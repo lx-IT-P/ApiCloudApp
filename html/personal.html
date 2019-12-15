@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>个人中心</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        header {
+            height: 200px;
+            background-image: url(../image/timg.jpg);
+
+            overflow: hidden;
+        }
+
+        header .left {
+            position: absolute;
+            left: 5px;
+            width: 22px;
+            height: 40px;
+            background-image: url(../image/back.png);
+            background-position: center center;
+            background-size: 50% 50%;
+            background-repeat: no-repeat;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -35px;
+        }
+
+        header>p {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: black;
+            font-size: 13px;
+        }
+
+        .un {
+            margin-top: 140px;
+        }
+
+        ul li {
+            height: 50px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        li span {
+            line-height: 50px;
+            font-size: 12px;
+        }
+
+        li .order {
+            background-image: url(../image/img_item_myorder.png);
+            background-size: 14px 17px;
+            background-repeat: no-repeat;
+            background-position: 12px center;
+            padding-left: 35px;
+        }
+
+        li .detail {
+            float: right;
+            background-image: url(../image/arrow_right.png);
+            background-size: 10px 14px;
+            background-repeat: no-repeat;
+            background-position: right center;
+            padding-right: 15px;
+            margin-right: 12px;
+            font-size: 12px;
+            color: #black;
+        }
+
+        li .account {
+            background-image: url(../image/icon_user_info_accounts.png);
+            background-size: 17px 18px;
+        }
+
+        li .youhui {
+            background-image: url(../image/icon_user_coupon.png);
+            background-size: 18px 13px;
+        }
+
+        li .address {
+            background-image: url(../image/item_user_address.png);
+            background-size: 17px 17px;
+        }
+
+        li .shoucang {
+            background-image: url(../image/shoucang.png);
+            background-size: 17px 17px;
+        }
+
+        li .gengxin {
+            background-image: url(../image/gengxin.png);
+            background-size: 17px 17px;
+        }
+
+        footer {
+            width: 100%;
+            height: 70px;
+            position: absolute;
+            bottom: 0;
+        }
+
+        footer span {
+            background-image: url(../image/user_setting.png);
+            background-position: left center;
+            background-size: 17px 17px;
+            background-repeat: no-repeat;
+            line-height: 70px;
+            padding-left: 25px;
+            position: absolute;
+        }
+
+        footer .set {
+            left: 12px;
+        }
+
+        footer .msg {
+            left: 100px;
+            background-image: url(../image/icon_user_messages.png);
+            background-size: 22px 14px;
+        }
+
+        footer .tel {
+            right: 12px;
+            background-image: url(../image/user_call.png);
+            background-size: 16px 15px;
+        }
+        .top{
+          height: 20px;
+          background-color: rgb(67, 67, 67);
+        }
+            </style>
+        </head>
+
+        <body>
+        <div class="top"></div>
+    <header>
+        <div class="left" tapmode onclick="api.closeWin();"></div>
+        <img src="../image/user.png" class="logo" tapmode onclick="chosePhoto()" id="photo">
+        <p id="un" class="un"></p>
+        <p>积分:218 余额:￥99</p>
+    </header>
+    <ul>
+        <li>
+            <span class="order">我的订单</span>
+            <span class="detail" tapmode onclick="fnOpenMyOrderWin();">查看所有订单详情</span>
+        </li>
+        <li>
+            <span class="account order">我的账户</span>
+            <span class="detail" tapmode onclick="fnOpenAccountWin();">充值有礼</span>
+        </li>
+        <li>
+            <span class="youhui order">优惠券</span>
+            <span class="detail" tapmode onclick="fnOpenCouponWin();">查看我的优惠券</span>
+        </li>
+        <li>
+            <span class="address order">收货地址</span>
+            <span class="detail" tapmode onclick="fnOpenAddressWin();">管理我的收货地址</span>
+        </li>
+        <li>
+            <span class="shoucang order">我的收藏</span>
+            <span class="detail" tapmode onclick="fnOpenAddressWin();">管理我的收藏</span>
+        </li>
+        <li>
+            <span class="gengxin order">检查更新</span>
+            <span class="detail" tapmode onclick="fnOpenAddressWin();"></span>
+        </li>
+    </ul>
+    <footer>
+        <span class="set" tapmode onclick="openSetting()">设置</span>
+        <span class="msg" tapmode onclick="fnOpenMessageWin();">消息</span>
+        <span class="tel" tapmode onclick="fnOpenCustomerServiceWin();">客服</span>
+    </footer>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        /*根据缓存设置用户名*/
+        var un = $api.byId('un');
+        $api.html(un, $api.getStorage('userName'));
+    };
+    /*打开设置*/
+    function openSetting() {
+        api.openWin({
+            name: 'setting',
+            url: './setting.html'
+        });
+    }
+    /*选择头像*/
+    function chosePhoto() {
+        api.actionSheet({
+            title: '选择',
+            cancelTitle: '取消',
+            buttons: ['拍一张', '相册']
+        }, function(ret, err) {
+            if (ret) {
+                //  alert( JSON.stringify( ret ) );
+                /*判断是相机还是相册*/
+                var sourceType = ['camera', 'album'];
+                if (ret.buttonIndex == sourceType.length + 1) {
+                    /*取消*/
+                    return;
+                }
+                /*进入相机或者相册*/
+                api.getPicture({
+                    sourceType: sourceType[ret.buttonIndex - 1],
+                    allowEdit: true,
+                    quality: 50,
+                    targetWidth: 500,
+                    targetHeight: 500,
+                }, function(ret, err) {
+                    if (ret) {
+                        /*成功获取到图片*/
+                        //  alert(JSON.stringify(ret));
+                        /*获取头像元素*/
+                        var ph = $api.byId('photo');
+                        /*将获取到的图设置给头像*/
+                        ph.setAttribute("src", ret.data);
+                    } else {
+                        alert(JSON.stringify(err));
+                    }
+                });
+
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+    // 打开我的订单Window
+    function fnOpenMyOrderWin() {
+        api.openWin({
+            name: 'myorder',
+            url: './myorder.html'
+        });
+    }
+
+    // 打开我的账户Window
+    function fnOpenAccountWin() {
+        api.openWin({
+            name: 'account',
+            url: './account.html'
+        });
+    }
+
+    // 打开我的优惠券Window
+    function fnOpenCouponWin() {
+        api.openWin({
+            name: 'coupon',
+            url: './coupon.html'
+        });
+    }
+
+    // 打开收货地址Window
+    function fnOpenAddressWin() {
+        api.openWin({
+            name: 'address',
+            url: './address.html'
+        });
+    }
+    // 打开消息Window
+    function fnOpenMessageWin() {
+        api.openWin({
+            name: 'message',
+            url: './message.html'
+        });
+    }
+
+    // 打开客服Window
+    function fnOpenCustomerServiceWin() {
+        api.openWin({
+            name: 'customerservice',
+            url: './customerservice.html'
+        });
+    }
+</script>
+
+</html>

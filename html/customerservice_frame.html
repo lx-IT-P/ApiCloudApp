@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>客服Frame</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+    html,
+    body {
+        background-color: #fdf3cf;
+    }
+
+    section {
+        position: relative;
+        height: auto;
+    }
+
+    section .item {
+        position: relative;
+        width: auto;
+        height: auto;
+        margin: 16px;
+    }
+
+    section .item .icon {
+        position: absolute;
+        top: 0;
+        width: 40px;
+        min-height: 40px;
+        height: 100%;
+        background-size: 40px 40px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        border-radius: 20px;
+    }
+
+    section .question .icon {
+        left: 0;
+        background-image: url(../image/user.png);
+    }
+
+    section .answer .icon {
+        right: 0;
+        background-image: url(../image/QQ.png)
+    }
+
+    section .item .content {
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        height: auto;
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    section .item .arrow {
+        position: absolute;
+        top: 50%;
+        margin-top: -5px;
+        width: 0;
+        height: 0px;
+    }
+
+    section .question .arrow {
+        left: 48px;
+        border-top: 5px solid;
+        border-bottom: 5px solid;
+        border-right: 20px solid;
+        border-color: transparent #fff transparent transparent;
+    }
+
+    section .answer .arrow {
+        right: 48px;
+        border-top: 5px solid;
+        border-bottom: 5px solid;
+        border-left: 20px solid;
+        border-color: transparent transparent transparent #ffa5d8;
+    }
+
+    section .item .text {
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 8px;
+        height: auto;
+        min-height: 40px;
+        font-size: 14px;
+        text-align: left;
+        line-height: 24px;
+        border-radius: 8px;
+    }
+
+    section .question .text {
+        background-color: #fff;
+    }
+
+    section .answer .text {
+        background-color: #ffa5d8;
+    }
+
+    footer {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        text-align: center;
+        background-color: #e3007f;
+    }
+
+    footer .row {
+        position: relative;
+        top: 11px;
+        width: 220px;
+        height: 28px;
+        margin: 0 auto;
+        background-color: #fdf3cf;
+        background-image: url(../image/service_footer.png);
+        background-repeat: no-repeat;
+        background-size: auto 22px;
+        background-position: center center;
+        border-radius: 14px;
+    }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="item question">
+            <div class="icon"></div>
+            <div class="content">
+                <div class="arrow"></div>
+                <div class="text">收到货后，发现产品存在问题如何处理？</div>
+            </div>
+        </div>
+        <div class="item answer">
+            <div class="icon"></div>
+            <div class="content">
+                <div class="arrow"></div>
+                <div class="text">亲，收到快递时请当面验收，如产品存在品质问题请尽快联系在线客服（收货24小时内），并拍照上传，我们会竭尽全力为您解决问题。</div>
+            </div>
+        </div>
+        <div class="item question">
+            <div class="icon"></div>
+            <div class="content">
+                <div class="arrow"></div>
+                <div class="text">使用什么快递送货？</div>
+            </div>
+        </div>
+        <div class="item answer">
+            <div class="icon"></div>
+            <div class="content">
+                <div class="arrow"></div>
+                <div class="text">您好，本店所有的商品支持顺丰，中通，圆通和申通。</div>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+
+</html>

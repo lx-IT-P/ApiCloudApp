@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          body{
+
+          }
+          #sousuokuang {
+              position: absolute;
+              background-image: url(../image/sousuo.png);
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: 30px 24px;
+              width: 50px;
+              height: 50px;
+
+
+          }
+
+          #search {
+              width: 220px;
+              /*height: 50px;*/
+              border: none;
+              /*输入的时候外边轮廓*/
+              outline: none;
+              text-align: left;
+              margin-left: 60px;
+              margin-top: 10px;
+
+          }
+
+          #sousuo {
+
+              margin-top: 15px;
+              margin-left: 30px;
+            }
+              .top{
+                height: 18px;
+                background-color: rgb(67, 67, 67);
+              }
+                  </style>
+              </head>
+
+              <body>
+              <div class="top"></div>
+    <span id="sousuokuang"></span>
+    <span > <input type="text" id="search"  placeholder="周边运动场地" maxlength="30" ></span>
+    <span id="sousuo" tapmode onclick="openWareFrame();">搜索</span>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+        var map = api.require('bMap');
+map.open({
+    rect: {
+        x: 0,
+        y: 58,
+        w: 'auto',
+        h: 'auto'
+    },
+    center: {
+        lon: 116.4021310000,
+        lat: 39.9994480000
+    },
+    zoomLevel: 10,
+    showUserLocation: true,
+    fixedOn: api.frameName,
+    fixed: true
+}, function(ret) {
+    if (ret.status) {
+
+    }
+});
+//显示地图
+var map = api.require('bMap');
+map.show();
+
+//获取地理位置
+var bMap = api.require('bMap');
+bMap.getLocation({
+    accuracy: '100m',
+    autoStop: true,
+    filter: 1
+}, function(ret, err) {
+
+});
+//获取百度地图比例尺级别，取值范围：3-18级
+var map = api.require('bMap');
+map.setZoomLevel({
+    level: 10
+});
+
+var map = api.require('bMap');
+map.searchCityByName({
+    name: "汉中"
+}, function(ret) {
+
+});
+//设定地图是否显示底图 poi 标注(不包含室内图标注)
+var map = api.require('bMap');
+map.setShowMapPoi({
+    showMapPoi: true
+});
+//设置百度地图相关属性
+// var map = api.require('bMap');
+// map.setMapAttr({
+//     type: 'standard'
+//     //zoomEnable:true
+//     rotateEnabled:true
+//     overlookEnabled:true
+// });
+//设置百度地图比例尺
+var map = api.require('bMap');
+map.setScaleBar({
+    show: true,
+    position: {
+        x: 100,
+        y: 100
+    }
+});
+//设定地图是否现实 3D 楼块效果
+var map = api.require('bMap');
+map.setBuilding({
+    building: true
+});
+//设置百度地图交通路况
+var map = api.require('bMap');
+map.setTraffic({
+    traffic: true
+});
+//确认是否开启定位功能
+var bMap = api.require('bMap');
+bMap.getLocationServices(function(ret, err) {
+    if (ret.enable) {
+
+    } else {
+        alert("未开启定位功能！");
+    }
+});
+
+//获取用户位置
+var map = api.require('bMap');
+map.showUserLocation({
+    isShow: true,
+    trackingMode: 'none'
+});
+
+//
+var bMap = api.require('bMap');
+bMap.getCurrentLocation(
+function(ret, err) {
+
+});
+//
+var map = api.require('bMap');
+map.searchRoute({
+    id: 1,
+    type: 'drive',
+    policy: 'ecar_fee_first',
+    start: {
+      lon: 107.058721,
+      lat: 33.073302
+
+    },
+    end: {
+      lon: 107.056629,
+      lat: 33.076109
+    }
+}, function(ret, err) {
+
+});
+//
+var map = api.require('bMap');
+map.searchRoute({
+    type: 'drive',
+    policy: 'ecar_fee_first',
+    start: {
+      lon: 107.058721,
+      lat: 33.073302
+
+    },
+    end: {
+      lon: 107.056629,
+      lat: 33.076109
+    }
+}, function(ret, err) {
+    if (ret.status) {
+        map.drawRoute({
+            id: 1,
+            autoresizing: false,
+            index: 0,
+            styles: {
+                start: {
+                    icon: 'widget://image/bmap_start.png'
+                },
+                end: {
+                    icon: 'widget://image/bmap_end.png'
+                }
+            }
+        }, function(ret) {
+
+        });
+    }
+});
+//设置指南针
+var map = api.require('bMap');
+map.setCompass({
+    position: {
+        x: 100,
+        y: 100
+    }
+});
+var map = api.require('bMap');
+map.showUserLocation({
+    isShow: true,
+    trackingMode: 'none'
+});
+var map = api.require('bMap');
+map.setShowMapPoi({
+    showMapPoi: true
+});
+
+      };
+  </script>
+  </html>

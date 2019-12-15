@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+      <style>
+          body{
+          }
+          /*header{
+            height: 50px;
+            background-color:rgb(67, 67, 67);
+          }
+          .center{
+            line-height: 50px;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+          }*/
+          .top{
+            height: 10px;
+            background-color: rgb(67, 67, 67);
+          }
+              </style>
+          </head>
+
+          <body>
+          <div class="top"></div>
+
+<div class="aui-tips aui-margin-b-15">
+            <i class="aui-iconfont aui-icon-info"></i>
+            <div class="aui-tips-title" tapmode onclick="chat()">消息提示条消息提示条消息提示</div>
+            <i class="aui-iconfont aui-icon-close" tapmode onclick="closeTips()"></i>
+        </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+
+
+        api.openFrame({
+            name: 'listpersonal-frm',
+            url: 'listpersonal-frm.html',
+            rect: {
+                x: 0,
+                y: 245,
+                w: 'auto',
+                h: 'auto'
+                          }
+        });
+        var personalCenter = api.require('personalCenter');
+
+        var btnArray = [{
+            'bgImg': 'widget://res/personalCenter/personal_btn_nor.png',
+            'selectedImg': 'widget://res/personalCenter/personal_btn_sele.png',
+            'lightImg': 'widget://res/personalCenter/personal_btn_light.png',
+            'title': '好友',
+            'count': '5'
+        }, {
+            'bgImg': 'widget://res/personalCenter/personal_btn_nor.png',
+            'selectedImg': 'widget://res/personalCenter/personal_btn_sele.png',
+            'lightImg': 'widget://res/personalCenter/personal_btn_light.png',
+            'title': '回贴',
+            'count': '240'
+        }, {
+            'bgImg': 'widget://res/personalCenter/personal_btn_nor.png',
+            'selectedImg': 'widget://res/personalCenter/personal_btn_sele.png',
+            'lightImg': 'widget://res/personalCenter/personal_btn_light.png',
+            'title': '主题',
+            'count': '27'
+        }];
+
+        var count = 382;
+
+        var y = 44;
+
+
+        personalCenter.open({
+            'y': y,
+            'imgPath': 'widget://image/timg.jpg',
+            'placeholderImg': 'widget://image/user.png',
+            'userName': 'LX',
+            'count': count,
+            'modButton': {
+                'bgImg': 'widget://image/pencil.jpg',
+                'lightImg':'widget://image/pencil.JPG',
+            },
+            fixedOn: api.frameName,
+            'btnArray': btnArray
+        }, function(ret, err) {
+            /* 头像修改按钮. */
+            if (btnArray.length === ret.click) {
+                api.confirm({
+                    title: '聊天盒子',
+                    msg: '您想要从哪里选取图片 ?',
+                    buttons: ['优雅自拍', '相册收藏', '取消']
+                }, function(ret, err) {
+                    var sourceType = 'album';
+
+                    if (3 == ret.buttonIndex) { // 取消
+                        return;
+                    }
+
+                    if (1 == ret.buttonIndex) { // 打开相机
+                        sourceType = 'camera';
+                    }
+
+                    api.getPicture({
+                        sourceType: sourceType,
+                        encodingType: 'png',
+                        mediaValue: 'pic'
+                    }, function(ret, err) {
+                        if (ret) {
+                            personalCenter.updateValue({
+                                imgPath: ret.data,
+                                count: count
+                            });
+
+                        }
+                    });
+
+                });
+
+                return;
+            }
+
+            var msg;
+
+            /* 修改按钮. */
+            if (btnArray.length + 1 == ret.click) {
+                msg = '您没有修改权限!';
+            }
+
+            if (btnArray.length + 2 == ret.click) {
+                msg = '您没有设置权限!'
+            }
+
+            if (btnArray.length == ret.click) {
+                btn = btnArray[ret.click];
+                msg = btn.title + ' 数量为 ' + btn.count
+            }
+
+            api.toast({
+                msg: msg,
+                duration: 1000,
+                location: 'top'
+            });
+        });
+
+      };
+      function chat() {
+          api.openWin({
+              name: 'chat',
+              url: 'chat.html'
+          });
+      }
+  </script>
+  </html>

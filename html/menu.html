@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>menu</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        .menu {
+            overflow: hidden;
+            background-color: white;
+        }
+
+        .menu li {
+            float: left;
+            width: 20%;
+            text-align: center;
+            line-height: 30px;
+            color: black;
+            opacity: 0.7;
+            font-size: 12px;
+            margin-left:10px;
+
+        }
+
+        .menu li.curr {
+            opacity: 1.0;
+          }
+        li:hover{
+            font-size: 14px;
+        color:rgb(243, 152, 0);
+text-decoration:underline;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="menu">
+        <li class="curr">集锦</li>
+        <li>教学</li>
+        <li>资讯</li>
+        <li>动态</li>
+
+
+
+    </ul>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    /*获取所有的li*/
+    var lis;
+    apiready = function() {
+        /*加载关东内容*/
+        /*设置5个 menu的内容*/
+        var frames = []; //空数组
+        for (var i = 1; i < 6; i++) {
+            frames.push({
+                name: "frame" + i,
+                url: "main_frame" + i + ".html"
+            });
+        }
+        api.openFrameGroup({
+            name: 'menugroup',
+            rect: {
+                x: 0,
+                y: 100,
+                w: 'auto',
+                h: 449
+            },
+            index: 0,
+            frames: frames
+        }, function(ret, err) {
+            if (ret) {
+                //  alert( JSON.stringify( ret ) );
+                /*当滚动发生，改变menu的选中*/
+                changeMenuIndex(ret.index);
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+
+
+        lis = document.querySelectorAll(".menu li");
+        // alert(lis.length);
+        /*遍历*/
+        for (var i = 0; i < lis.length; i++) {
+            /*给每一个li添加点击事件*/
+            var li = lis[i];
+            li.index = i;
+            li.onclick = clickedLi;
+        }
+    };
+    /*切换nav的menu*/
+    function changeMenuIndex(index) {
+        /*先清除所有li的curr*/
+        for (var i = 0; i < lis.length; i++) {
+            if (i == index) {
+                /*给当前li添加curr*/
+                $api.addCls(lis[i], 'curr');
+            } else {
+                $api.removeCls(lis[i], 'curr');
+            }
+        }
+    }
+    /*点击了li*/
+    function clickedLi() {
+        // alert(this.index);
+        changeMenuIndex(this.index);
+        /*滚动到指定的区域*/
+        api.setFrameGroupIndex({
+            name: 'menugroup',
+            index: this.index,
+            scroll: true
+        });
+    }
+</script>
+
+</html>

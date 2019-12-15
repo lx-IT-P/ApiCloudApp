@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+      <style>
+          body{
+background-color: rgb(220, 220, 220);
+          }
+          ul li {
+          position: relative;
+          height: 70px;
+          border-bottom: 1px solid #ddd;
+      }
+
+      li span {
+          line-height: 50px;
+          font-size: 20px;
+      }
+
+      li .order {
+          background-image: url(../image/ding.png);
+          background-size: 19px 17px;
+          background-repeat: no-repeat;
+          background-position: 12px center;
+          padding-left: 35px;
+      }
+
+      li .detail {
+          float: right;
+          background-image: url(../image/arrow_right1.png);
+          background-size: 16px 16px;
+          background-repeat: no-repeat;
+          background-position: right center;
+          padding-right: 20px;
+          margin-right: 12px;
+          font-size: 12px;
+          color: #aaa;
+      }
+
+      .luntan {
+          border-bottom: 1px solid #ddd;
+          background-color: white;
+      }
+      .zhiding {
+            border-bottom: 1px solid #ddd;
+            background-color: white;
+        }
+        .top{
+          height: 18px;
+          background-color: rgb(67, 67, 67);
+        }
+            </style>
+        </head>
+
+        <body>
+        <div class="top"></div>
+    <!-- <div class="aui-tips aui-margin-b-15">
+            <i class="aui-iconfont aui-icon-info"></i>
+            <div class="aui-tips-title">您有一条好友消息！！！</div>
+            <i class="aui-iconfont aui-icon-close" tapmode onclick="closeTips()"></i>
+        </div> -->
+        <div class="aui-searchbar" id="search">
+            <div class="aui-searchbar-input aui-border-radius">
+                <i class="aui-iconfont aui-icon-search"></i>
+                <input type="search" placeholder="请输入搜索内容" id="search-input" tapmode onclick="sousuok();">
+                <div class="aui-searchbar-clear-btn">
+                    <i class="aui-iconfont aui-icon-close"></i>
+                </div>
+            </div>
+            <div class="aui-searchbar-btn" tapmode>取消</div>
+        </div>
+
+         <div class="zhiding">
+           <div class="aui-card-list">
+                       <div class="aui-card-list-header">
+                           <div><i class="aui-iconfont aui-icon-my aui-text-danger"></i><span class="aui-text-danger"> 最近联系人</span></div>
+                           <i class="aui-iconfont aui-icon-more"></i>
+                       </div>
+    <ul>
+             <li>
+                 <span class="order" tamode onclick="listpersonal()">刘祥</span>
+                 <span class="detail" tapmode onclick="fnOpenMyOrderWin();">特别关注</span>
+             </li>
+             <li>
+                 <span class="order">刘佳康</span>
+                 <span class="detail" tapmode onclick="fnOpenMyOrderWin();">特别关注</span>
+             </li>
+             <li>
+                 <span class="order">王福元</span>
+                 <span class="detail" tapmode onclick="fnOpenMyOrderWin();">特别关注</span>
+             </li>
+             <li>
+                 <span class="order">杨康</span>
+                 <span class="detail" tapmode onclick="fnOpenMyOrderWin();">特别关注</span>
+             </li>
+             <li>
+                 <span class="order">王志辉</span>
+                 <span class="detail" tapmode onclick="fnOpenMyOrderWin();"></span>
+             </li>
+             <li>
+                 <span class="order">石家豪</span>
+                 <span class="detail" tapmode onclick="fnOpenMyOrderWin();"></span>
+             </li>
+             <li>
+                 <span class="order">王帅</span>
+                 <span class="detail" tapmode onclick="fnOpenMyOrderWin();"></span>
+             </li>
+             <li>
+                 <span class="order">王凡婷</span>
+                 <span class="detail" tapmode onclick="fnOpenMyOrderWin();"></span>
+             </li>
+             <li>
+                 <span class="order">安吉</span>
+                 <span class="detail" tapmode onclick="fnOpenMyOrderWin();"></span>
+             </li>
+         </ul>
+         </div>
+
+
+            <div class="aui-card-list-footer aui-text-center">
+                查看更多
+            </div>
+        </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+        api.openFrame({
+            name: 'botter',
+            url: 'botter1.html',
+            rect: {
+                x: 0,
+                y: 549,
+                w: 'auto',
+                h: 'auto',
+            }
+        });
+      };
+
+      function listpersonal() {
+          api.openWin({
+              name: 'listpersonal',
+              url: 'chat.html',
+
+          });
+        }
+          function sousuok() {
+              api.openWin({
+                  name: 'sousuok',
+                  url: 'sousuok.html',
+
+              });
+}
+
+  </script>
+  </html>

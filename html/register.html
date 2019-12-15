@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          html,
+          body {
+              height: 100%;
+              background-image: url(../image/login.jpg);
+            
+
+          }
+
+          header {
+              height: 50px;
+              background-color: rgb(67, 67, 67);
+          }
+
+          header .left {
+              position: absolute;
+              left: 5px;
+              top: 0;
+              width: 22px;
+              height: 100%;
+              background-image: url(../image/back.png);
+              background-size: 50% 20px;
+              background-position: center center;
+              background-repeat: no-repeat;
+              z-index: 99;
+          }
+
+          header .center {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              line-height: 50px;
+              color: white;
+              font-size: 18px;
+              text-align: center;
+          }
+
+          header .right {
+              position: absolute;
+              right: 10px;
+              line-height: 50px;
+              font-size: 14px;
+              color: white;
+          }
+
+          .c {
+              background-color: rgb(170, 170, 170);
+              /*//width: 100%;
+              height: 400px;*/
+              position: absolute;
+              margin: 90px 20px;
+              border-radius: 20px;
+              opacity: 0.7;
+          }
+
+          .row {
+              width: auto;
+              height: 71px;
+              margin: 0px 36px;
+              padding: 20px 10px 7px;
+              box-sizing: border-box;
+          }
+
+          .row input {
+              border: none;
+              outline: none;
+              font-size: 16px;
+              background-color: white;
+
+              line-height: 40px;
+              text-align: center;
+              width: 230px;
+              text-align: left;
+              border-radius: 10px;
+          }
+
+          .register {
+              width: auto;
+              height: 50px;
+              line-height: 50px;
+              background-color: rgb(0, 255, 255);
+              margin: 35px 45px;
+              font-size: 25px;
+              color: black;
+              text-align: center;
+              border-radius: 15px;
+          }
+
+          .highlight {
+              opacity: 0.7;
+          }
+
+          .wxlog {
+              width: auto;
+              height: 60px;
+              border: 1px solid #aaa;
+              border-radius: 9px;
+              margin: 0 60px;
+              background-image: url(../image/share_friend.png);
+              background-size: 40px 33px;
+              background-repeat: no-repeat;
+              background-position: 50px center;
+              line-height: 60px;
+              text-align: center;
+              font-size: 18px;
+              color: #aaa;
+              padding-left: 50px;
+          }
+
+          .top {
+              height: 18px;
+              background-color: rgb(67, 67, 67);
+          }
+      </style>
+      </head>
+
+      <body>
+      <div class="top"></div>
+    <header>
+        <div class="left" tapmode onclick="api.closeWin();"></div>
+        <div class="center">会员注册</div>
+    </header>
+    <div class="c">
+    <div class="row">
+      <input type="text" id="userName" placeholder="用户名" maxlength="16">
+    </div>
+    <div class="row">
+      <input type="password" id="passWord" placeholder="密码">
+    </div>
+    <div class="register" tapmode="highlight" onclick="goRegister()">注册</div>
+    </div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript" src="../script/SHA1.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+
+      };
+      /*注册具体实现*/
+      var userInput = $api.byId('userName');
+      var passInput = $api.byId('passWord');
+      function goRegister(){
+        /*用户名和密码都不能为空，才可以发送请求*/
+        /*获取输入框中的内容*/
+        var userVal = userInput.value;
+        var passVal = passInput.value;
+        // alert(userVal);
+        // alert(passVal);
+        if(userVal&&passVal){
+          /*将appkey加密*/
+          var now = Date.now();
+          var appKey = SHA1("A6059503392206"+"UZ"+"22636A1F-7AC2-8052-DA42-FB46DDD5AECC"+"UZ"+now)+"."+now;
+          api.ajax({
+              url: 'https://d.apicloud.com/mcm/api/user',
+              method: 'post',
+              headers: {
+                "X-APICloud-AppId": "A6059503392206",
+                "X-APICloud-AppKey": appKey
+              },
+              data: {
+                  values: {
+                      "username": userVal,
+                      "password": passVal
+                  }
+              }
+          },function(ret, err){
+            /*注册成功才会有id*/
+              if (ret.id) {
+                /*注册成功*/
+                  alert("注册成功");
+                  /*将注册的账号传递到登录界面，进行登录*/
+                  api.sendEvent({
+                      name: 'sendAccount',
+                      extra: {
+                          userName: userVal
+                      }
+                  });
+                  /*返回登录界面*/
+                  api.closeWin();
+              } else {
+                /*注册失败*/
+                  alert("注册失败"+JSON.stringify( err ) );
+                  $api.setStorage('logSucess',+userInput.value);
+              }
+          });
+
+        }else{
+          alert("请输入用户名或密码");
+        }
+      }
+  </script>
+  </html>

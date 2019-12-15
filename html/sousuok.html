@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+      <style>
+          body{
+  background-color: rgb(238, 238, 238);
+          }
+
+          .top{
+            height: 18px;
+            background-color: rgb(67, 67, 67);
+          }
+          h3{
+            margin: 10px;
+
+          }
+          .h3{
+            background-color: rgb(238, 238, 238);
+            height: 40px;
+          }
+
+              </style>
+          </head>
+
+          <body>
+          <div class="top"></div>
+    <header class="aui-bar aui-bar-nav aui-bar-light">
+            <div class="aui-pull-left aui-btn">
+                <span class="aui-iconfont aui-icon-left"></span>
+            </div>
+            <div class="aui-title" style="left:2rem; right: 0.5rem;">
+                <div class="aui-searchbar">
+                    <div class="aui-searchbar-input aui-border-radius">
+                        <i class="aui-iconfont aui-icon-search"></i>
+                        <input type="search" placeholder="关键词/昵称" id="search-input">
+                        <div class="aui-searchbar-clear-btn">
+                            <i class="aui-iconfont aui-icon-close"></i>
+                        </div>
+                    </div>
+                    <div class="aui-searchbar-btn" tapmode>取消</div>
+                </div>
+            </div>
+        </header>
+  <h3>搜索条件</h3>
+        <ul class="aui-list aui-form-list">
+          <li class="aui-list-item">
+              <div class="aui-list-item-inner">
+                  <div class="aui-list-item-label">
+                      性别
+                  </div>
+                  <div class="aui-list-item-input">
+                      <select>
+                          <option>男</option>
+                          <option>女</option>
+                          <option>不限</option>
+                      </select>
+                  </div>
+              </div>
+          </li>
+          <li class="aui-list-item">
+              <div class="aui-list-item-inner">
+                  <div class="aui-list-item-label">
+                      球类
+                  </div>
+                  <div class="aui-list-item-input">
+                      <select>
+                          <option>篮球</option>
+                          <option>羽毛球</option>
+                          <option>棒球</option>
+                          <option>乒乓球</option>
+                          <option>足球</option>
+                      </select>
+                  </div>
+              </div>
+          </li>
+          <li class="aui-list-item">
+              <div class="aui-list-item-inner">
+                  <div class="aui-list-item-label">
+                      地域
+                  </div>
+                  <div class="aui-list-item-input">
+  <input type="text" placeholder="地域">
+                  </div>
+              </div>
+          </li>
+          <!-- <li class="aui-list-item">
+              <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                  <div class="aui-btn aui-btn-info aui-margin-r-5" tapmode onclick="list1();">查找</div>
+
+              </div>
+          </li> -->
+        <div class="h3"><div class="font">我的信息</div></div>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        姓名
+                    </div>
+                    <div class="aui-list-item-input">
+  <input type="text" placeholder="姓名">
+                    </div>
+                </div>
+            </li>
+
+
+
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label">
+                                    性别
+                                </div>
+                                <div class="aui-list-item-input">
+  <input type="text" placeholder="性别">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label">
+                                    年龄
+                                </div>
+                                <div class="aui-list-item-input">
+                        <input type="number" placeholder="年龄">
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label">
+                                    球类
+                                </div>
+                                <div class="aui-list-item-input">
+                                    <select>
+                                        <option>篮球</option>
+                                        <option>羽毛球</option>
+                                        <option>棒球</option>
+                                        <option>乒乓球</option>
+                                        <option>足球</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="aui-list-item">
+                            <div class="aui-list-item-inner">
+                                <div class="aui-list-item-label">
+                                    我的位置
+                                </div>
+                                <div class="aui-list-item-input">
+  <input type="text" placeholder="我的位置">
+                                </div>
+                            </div>
+                        </li>
+
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                    <div class="aui-btn aui-btn-info aui-margin-r-5" tapmode onclick="list1();">查找</div>
+                    <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+                </div>
+            </li>
+        </ul>
+
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+
+        api.openFrame({
+            name: 'botter',
+            url: 'botter1.html',
+            rect: {
+                x: 0,
+                y: 549,
+                w: 'auto',
+                h: 'auto',
+            }
+        });
+      };
+      function list1() {
+          api.openWin({
+              name: 'sousuok',
+              url: 'list1.html',
+
+          });
+}
+
+  </script>
+  </html>

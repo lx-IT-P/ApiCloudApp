@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            background-image: url(../image/login.jpg);
+        }
+
+        header {
+            height: 50px;
+            background-color: rgb(67, 67, 67);
+        }
+
+        header .left {
+            position: absolute;
+            left: 5px;
+            top: 0;
+            width: 22px;
+            height: 100%;
+            background-image: url(../image/back.png);
+            background-size: 50% 20px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            z-index: 99;
+        }
+
+        header .center {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            line-height: 50px;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        header .right {
+            position: absolute;
+            right: 10px;
+            line-height: 50px;
+            font-size: 14px;
+            color: white;
+        }
+
+        .c {
+            background-color: rgb(170, 170, 170);
+            /*//width: 100%;
+            height: 400px;*/
+            position: absolute;
+            margin: 80px 20px;
+            border-radius: 20px;
+            opacity: 0.7;
+        }
+
+        .row {
+            width: auto;
+            height: 71px;
+            margin: 0px 36px;
+            padding: 20px 10px 7px;
+            box-sizing: border-box;
+        }
+
+        .row input {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            background-color: white;
+            line-height: 40px;
+            text-align: center;
+            width: 230px;
+            text-align: left;
+            border-radius: 10px;
+        }
+
+        .login {
+            width: auto;
+            height: 50px;
+            line-height: 50px;
+            background-color: rgb(0, 255, 255);
+            margin: 35px 45px;
+            font-size: 25px;
+            color: black;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        .highlight {
+            opacity: 0.7;
+        }
+
+        .wxlog {
+            width: auto;
+            height: 60px;
+            border: 1px solid white;
+            border-radius: 9px;
+            margin: 0 60px;
+            background-image: url(../image/share_friend.png);
+            background-size: 40px 33px;
+            background-repeat: no-repeat;
+            background-position: 5px center;
+            line-height: 60px;
+            text-align: center;
+            font-size: 18px;
+            color: white;
+            padding-left: 5px;
+        }
+
+        .top {
+            height: 18px;
+            background-color: rgb(67, 67, 67);
+        }
+
+        h5 {
+            text-align: center;
+            color: yellow;
+        }
+
+        h4 {
+            text-align: center;
+            color: yellow;
+        }
+
+        .img {
+            margin-top: 10px;
+            margin-bottom: 0;
+            margin-left: 125px;
+            width: 70px;
+            height: 70px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top"></div>
+    <header>
+        <div class="left" tapmode onclick="api.closeWin();"></div>
+        <div class="center">会员登录</div>
+        <div class="right" tapmode onclick="openRegister()">注册</div>
+    </header>
+
+    <div class="c">
+    <span class="img"><img src="../image/user.png"></span>
+        <h4>刘祥</h4>
+        <h5>您好，欢迎回来！</h5>
+        <div class="row">
+            <input id="un" type="text" maxlength="16" placeholder="用户名">
+        </div>
+        <div class="row">
+            <input id="pass" type="password" placeholder="密码">
+        </div>
+        <div class="login" tapmode="highlight" onclick="goLogin()">登录</div>
+
+        <div class="wxlog">使用微信登录</div>
+    </div>
+
+
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/SHA1.js"></script>
+
+<script type="text/javascript">
+    /*获取输入框*/
+    var unInput = $api.byId('un');
+    var passInput = $api.byId('pass');
+    apiready = function() {
+        /*接收注册成功的回调*/
+        api.addEventListener({
+            name: 'sendAccount'
+        }, function(ret, err) {
+            if (ret) {
+                //  alert("接受到账号..."+JSON.stringify( ret ) );
+                // alert(ret.value.userName);
+                /*将传过来的账号赋值给输入框*/
+                unInput.value = ret.value.userName;
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+
+    };
+    /*打开注册界面*/
+    function openRegister() {
+        api.openWin({
+            name: 'register',
+            url: './register.html'
+        });
+    }
+    /*登录具体实现*/
+    function goLogin() {
+        var unVal = unInput.value;
+        var passVal = passInput.value;
+        if (unVal && passVal) {
+            /*将appkey加密*/
+            var now = Date.now();
+            var appKey = SHA1("A6059503392206" + "UZ" + "22636A1F-7AC2-8052-DA42-FB46DDD5AECC" + "UZ" + now) + "." + now;
+            /*发送登录请求*/
+            api.ajax({
+                url: 'https://d.apicloud.com/mcm/api/user/login',
+                method: 'post',
+                "headers": {
+                    "X-APICloud-AppId": "A6059503392206",
+                    "X-APICloud-AppKey": appKey
+                },
+                data: {
+                    values: {
+                        "username": unVal,
+                        "password": passVal
+                    }
+                }
+            }, function(ret, err) {
+                if (ret.id) {
+                    // alert( JSON.stringify( ret ) );
+                    alert("登陆成功!");
+                    /*先设置缓存，再回到主界面*/
+                    $api.setStorage('userName', unVal);
+                    api.closeWin();
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+
+        } else {
+            alert("请输入账号或密码");
+        }
+    }
+</script>
+
+</html>

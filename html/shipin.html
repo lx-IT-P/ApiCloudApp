@@ -1,0 +1,204 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="tephone=no,email=no,date=no,address=no">
+    <style type="text/css">
+        html {
+            background-color: white;
+            height: 100%;
+        }
+
+        .header {
+            margin-top: 0;
+            width: 100%;
+        }
+
+        .one {
+            margin-top: 20px;
+        }
+
+        .hover {
+            opacity: 0.4;
+        }
+
+        .left {
+            padding-left: 12px;
+        }
+
+        .right {
+            padding-left: 110px;
+        }
+
+        .right2 {
+            padding-left: 30px;
+        }
+
+        .right1 {
+            padding-left: 30px;
+        }
+
+        h3 {
+            font-size: 15px;
+        }
+        .top{
+        height: 20px;
+        background-color: rgb(67, 67, 67);
+      }
+          </style>
+      </head>
+
+      <body>
+      <div class="top"></div>
+
+
+    <img class="header" src="../image/headerkebi.png" height="230px" width="100%" tapmode onclick="fnPlay()">
+    <div class="one">
+        <img class="left" src="../image/reping.png" height="40px" width="97px" tapmode onclick="openCity()">
+        <img class="right" src="../image/xiazai.png" height="40px" width="27px">
+        <img class="right1" src="../image/fenxiang.png" height="40px" width="27px">
+        <img class="right2" src="../image/tianjia.png" height="40px" width="27px">
+    </div>
+    <hr>
+    <h3>为您推荐</h3>
+    <img src="../image/maidi.png" height="250px" width="100%">
+    <hr>
+    <img src="../image/gaoxiao.png" height="250px" width="100%">
+</body>
+
+</html>
+<script type="text/javascript">
+    var videoPlayer;
+    apiready = function() {
+        videoPlayer = api.require('videoPlayer');
+
+    };
+
+    function fnPlay() {
+        var videoPlayer = api.require('videoPlayer');
+        videoPlayer.play({
+            rect: {
+                x: 0,
+                y: 0,
+                w: 400,
+                h: 250
+            },
+            texts: {
+                head: {
+                    title: '致敬科比'
+                }
+            },
+            styles: {
+                head: {
+                    bg: 'rgba(0.5,0.5,0.5,0.7)',
+                    height: 44,
+                    titleSize: 16,
+                    titleColor: '#fff',
+                    backSize: 20,
+                    backImg: 'widget://image/back.png',
+                    setSize: 20,
+                    setImg: 'widget://image/set.png'
+                },
+
+            },
+
+            path: 'widget://video/kebi.MP4',
+
+            autoPlay: true
+        }, function(ret, err) {
+            alert(JSON.stringify(ret));
+            if (ret) {
+
+            } else {
+
+            }
+        });
+    }
+
+
+    function fnForward() {
+        videoPlayer.forward({
+            seconds: 5
+        });
+    }
+
+    function fnRewind() {
+        videoPlayer.rewind({
+            seconds: 5
+        });
+    }
+
+    function fnSeekTo() {
+        videoPlayer.seekTo({
+            seconds: 20
+        });
+    }
+
+    function fnSetBrightness() {
+        videoPlayer.setBrightness({
+            brightness: 50
+        });
+    }
+
+    function fnGetBrightness() {
+        videoPlayer.getBrightness(function(ret, err) {
+            if (ret) {
+
+            } else {
+
+            }
+        });
+    }
+
+    function fnSetVolume() {
+        videoPlayer.setVolume({
+            volume: 0.6
+        });
+    }
+
+    function fnGetVolume() {
+        videoPlayer.getVolume(function(ret, err) {
+            if (ret) {
+
+            } else {
+
+            }
+        });
+    }
+
+    function fnAddEventListener() {
+        videoPlayer.addEventListener({
+            name: 'leftUp'
+        }, function(ret, err) {
+            if (ret) {
+
+            } else {
+
+            }
+        });
+    }
+
+    /*打开城市列表*/
+     function openCity() {
+
+
+         api.openFrame({
+             name: 'city',
+             url: 'html/reping.html',
+             rect: {
+                 x: 0,
+                 y: 50,
+                 w: 'auto',
+                 h: 'auto'
+             }
+         });
+
+
+
+     }
+</script>
+
+
+
+</html>

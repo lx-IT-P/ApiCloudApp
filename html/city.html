@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            background-color: rgb(32, 44, 67);
+        }
+
+        .title {
+            width: auto;
+            height: 80px;
+            padding-top: 50px;
+            margin: 0 36px;
+            box-sizing: border-box;
+            color: white;
+            text-align: center;
+            border-bottom: 1px solid rgb(228, 0, 127);
+        }
+
+        .list li {
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            font-size: 21px;
+            list-style: none;
+        }
+
+        .qishi {
+            margin-top: -600px;
+        }
+
+        .huren,
+        .rehuo,
+        .gongniu,
+        .huojian,
+        .leiting,
+        .kuaichuan,
+        .maci,
+        .laoying,
+        .qicai,
+        .yongshi {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">选择球队</div>
+
+    <div id="list" class="list">
+
+    </div>
+    <div class="qishi"> <img src="../image/qishi.png"></div>
+    <div class="huren"> <img src="../image/huren.png"></div>
+    <div class="huojian"> <img src="../image/huojian.png"></div>
+    <div class="rehuo"> <img src="../image/rehuo.png"></div>
+    <div class="gongniu"> <img src="../image/gongniu.png"></div>
+    <div class="leiting"> <img src="../image/leiting.png"></div>
+    <div class="kuaichuan"> <img src="../image/kuaichuan.png"></div>
+    <div class="maci"> <img src="../image/maci.png"></div>
+    <div class="laoying"> <img src="../image/laoyuing.png"></div>
+    <div class="qicai"> <img src="../image/menglong.png"></div>
+    <div class="yongshi"> <img src="../image/yongshi.png"></div>
+
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        /*获取城市元素*/
+        var citys = $api.byId('list');
+        /*从服务器获取支持城市的接口获取数据*/
+        var lists = ["骑士", "湖人", "火箭", "热火", "公牛", "雷霆", "快船", "马刺", "老鹰", "猛龙", "奇才", "勇士"];
+        /*根据城市数量，创建li*/
+        /*创建一个字符串，保存需要加入的内容*/
+        var htmlStr = '';
+        for (var i = 0; i < lists.length; i++) {
+            var li = '<li tapmode onclick="goBack(this)">' + lists[i] + '</li>';
+            /*将内容拼接*/
+            htmlStr += li;
+        }
+        // console.log(htmlStr);
+        /*将内容添加到ul*/
+        $api.html(citys, htmlStr);
+    };
+    /*点击了城市列表goBack*/
+    function goBack(obj) {
+        /*向index.html发送一个消息*/
+        // alert(obj.innerHTML);
+        api.sendEvent({
+            name: 'changeCity',
+            extra: {
+                cityName: obj.innerHTML
+            }
+        });
+        /*关闭当前frame*/
+        api.closeFrame();
+    }
+</script>
+
+</html>

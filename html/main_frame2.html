@@ -1,0 +1,376 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>首页Frame</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui-flex.css" />
+    <style type="text/css">
+
+
+
+    section {
+        position: relative;
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        padding: 0 8px;
+    }
+
+    .ware-0 {
+        position: relative;
+        width: 100%;
+        height: 30px;
+        box-sizing: border-box;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .content {
+        width: 100%;
+        height: 100%;
+    }
+
+    .ware-0 .thumbnail {
+        height: 130px;
+        width: 100%;
+    }
+
+    .ware-0 .info {
+        width: 100%;
+        box-sizing: border-box;
+        height: 35px;
+        line-height: 35px;
+        padding-left: 6px;
+        border-bottom: 1px solid #d1d1d1;
+    }
+
+    .ware-0 .info .price {
+        font-size: 14px;
+        color: #e3007f;
+    }
+
+    .ware-0 .info .unit {
+        font-size: 13px;
+        color: #767676;
+    }
+
+    .ware-0 .info .origin-price {
+        font-size: 11px;
+        color: #c0c0c0;
+    }
+
+    .ware-1 {
+        position: relative;
+        width: 100%;
+        height: 145px;
+        box-sizing: border-box;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #d1d1d1;
+    }
+
+    .ware-1 .thumbnail {
+        position: absolute;
+        top: 20px;
+        left: 0px;
+        height: 100px;
+        width: 150px;
+    }
+
+    .ware-1 .info {
+        width: 100%;
+        height: 114px;
+        box-sizing: border-box;
+        padding-left: 170px;
+        padding-right: 28px;
+    }
+
+    .ware-1 .info .name {
+        width: 100%;
+        height: 15px;
+        color: #555555;
+        margin-top: 14px;
+        font-size: 12px;
+    }
+
+    .ware-1 .info .description {
+        margin-top: 10px;
+        width: 100%;
+        height: 13px;
+        font-size: 13px;
+        color: rgb(235,97,0);
+    }
+
+    .ware-1 .info .price-tag {
+        margin-top: 10px;
+        width: 100%;
+        height: 12px;
+        font-size: 12px;
+        vertical-align: top;
+    }
+
+    .ware-1 .info .price-tag .price {
+        color: #e3007f;
+    }
+
+    .ware-1 .info .price-tag .unit {
+        font-size: 8px;
+        color: #cbcbcb;
+    }
+
+    .ware-1 .info .origin-price {
+        margin-top: 5px;
+        width: 100%;
+        height: 10px;
+        font-size: 10px;
+        color: rgb(181,181,181);
+    }
+
+    .ware .control {
+        position: absolute;
+        width: 110px;
+        height: 23px;
+        right: 8px;
+    }
+
+    .ware-0 .control {
+        bottom: 8px;
+    }
+
+    .ware-1 .control {
+        top: 90px;
+    }
+
+    .ware .control .panel {
+        display: none;
+        height: 23px;
+    }
+
+    .ware .control .minus {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 23px;
+        height: 23px;
+        z-index: 2;
+    }
+
+    .ware .control .count {
+        position: relative;
+        top: 0;
+        margin-left: 31px;
+        margin-right: 31px;
+        width: auto;
+        height: 23px;
+        text-align: center;
+        line-height: 23px;
+        color: #444;
+        font-size: 12px;
+        background-image: url(../image/count.png);
+        background-repeat: no-repeat;
+        background-size: 48px 23px;
+    }
+
+    .ware .control .add {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 23px;
+        height: 23px;
+        z-index: 2;
+    }
+
+    .push-status {
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+        color: #888;
+        line-height: 40px;
+        text-align: center;
+        background-color: #fff;
+    }
+
+    .active {
+        opacity: 0.7;
+    }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+      <div class="aui-searchbar" id="search">
+            <div class="aui-searchbar-input aui-border-radius">
+                <i class="aui-iconfont aui-icon-search"></i>
+                <input type="search" placeholder="请输入搜索内容" id="search-input">
+                <div class="aui-searchbar-clear-btn">
+                    <i class="aui-iconfont aui-icon-close"></i>
+                </div>
+            </div>
+            <div class="aui-searchbar-btn" tapmode>取消</div>
+        </div>
+
+        </section>
+    </header>
+    <br>
+    <section class="aui-content" style="background-color: #fff;">
+      <div class="aui-flex-col aui-flex-center aui-border-tb">
+        <div class="aui-flex-item-4 aui-flex-row aui-flex-middle aui-padded-10" onclick="gouwu()">
+          <h3 class="aui-text-danger">爱上篮球</h3>
+          <p>
+            你也可以成为传奇
+          </p>
+          <img src="../image/n1.png">
+        </div>
+        <div class="aui-flex-item-8 aui-border-l">
+          <div class="aui-flex-col aui-padded-10 aui-border-b">
+            <div class="aui-flex-item-12">
+              <div class="aui-flex-item-9">
+                <h3 class="aui-text-info">成为你的偶像</h3>
+                <p>
+                  不是不可能
+                </p>
+              </div>
+              <div class="aui-flex-item-3 aui-text-right"><img src="../image/n2.png">
+              </div>
+            </div>
+          </div>
+          <div class="aui-flex-col">
+            <div class="aui-flex-item-6 aui-padded-10" style="position: relative;">
+              <h5 class="aui-text-warning">棒球人生</h5>
+              <p>
+                永不言败
+              </p>
+              <img src="../image/n3.png">
+            </div>
+            <div class="aui-flex-item-6 aui-padded-10 aui-border-l">
+              <h5 class="aui-text-success">NFL球星</h5>
+              <p>
+                下一个就是你
+              </p>
+              <img src="../image/n4.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section id="list">
+        <div class="ware ware-0">
+            <div class="content" tapmode onclick="openWareFrame();">
+
+                <div class="info">
+                    <span class="price">NBA</span>
+                    <span class="unit">这里有你想看的</span>
+
+                </div>
+                <div class="control">
+                    <div class="panel">
+                        <img class="minus" src="../image/minus.png">
+                        <div class="count">0</div>
+                    </div>
+                    <img class="add" src="../image/add.png">
+                </div>
+            </div>
+        </div>
+        <div class="ware ware-1">
+            <div class="content" tapmode onclick="openWareFrame();">
+                <img class="thumbnail" src="../image/jiaoxue1.png">
+                <div class="info">
+                    <div class="name">NBA球星绝招教学</div>
+                    <div class="description">保罗领衔</div>
+                    <div class="price-tag">
+                          <div class="origin-price">2018-04-08  </div>
+
+                    </div>
+
+                </div>
+                <div class="ware ware-1">
+                    <div class="content" tapmode onclick="openWareFrame();">
+                        <img class="thumbnail" src="../image/jiaoxue2.png">
+                        <div class="info">
+                            <div class="name">科比超强梦幻脚步过人教学</div>
+                            <div class="description">独步天下任我其谁</div>
+                            <div class="price-tag">
+                                  <div class="origin-price">2018-03-01  </div>
+                            </div>
+
+                        </div>
+                        <div class="ware ware-1">
+                            <div class="content" tapmode onclick="openWareFrame();">
+                                <img class="thumbnail" src="../image/jiaoxue3.png">
+                                <div class="info">
+                                    <div class="name">想象他一样照着做就行</div>
+                                    <div class="description">詹姆斯一小时完整训练</div>
+                                    <div class="price-tag">
+                                      <div class="origin-price">NBA教学
+                                      </div>
+                                        <div class="origin-price">2018-02-02  </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="ware ware-1">
+                                    <div class="content" tapmode onclick="openWareFrame();">
+                                        <img class="thumbnail" src="../image/jiaoxue4.png">
+                                        <div class="info">
+                                            <div class="name">NBA教学斯蒂芬库里组合</div>
+                                            <div class="description">小哼篮球</div>
+                                            <div class="price-tag">
+                                                <div class="origin-price">2018-01-20  </div>
+                                                <span class="unit"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="ware ware-1">
+                                            <div class="content" tapmode onclick="openWareFrame();">
+                                                <img class="thumbnail" src="../image/jiaoxue5.png">
+                                                <div class="info">
+                                                    <div class="name">NBA训练师whqt步法投篮 </div>
+                                                    <div class="description">脚步动作</div>
+                                                    <div class="price-tag">
+                                                        <span class="price">来源：爱运动</span>
+
+                                                    </div>
+                                                    <div class="origin-price">2018-01-05
+
+                                                    </div>
+                                                </div>
+                <div class="control">
+                    <div class="panel">
+                        <img class="minus" src="../image/minus.png">
+                        <div class="count">0</div>
+                    </div>
+                    <img class="add" src="../image/add.png ">
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+apiready = function() {
+
+}
+
+function openWareFrame() {
+  api.openWin({
+      name: 'ware',
+      url: './ware.html',
+      pageParam: {
+          wareId: '123456'
+      }
+  });
+
+
+}
+
+</script>
+
+</html>

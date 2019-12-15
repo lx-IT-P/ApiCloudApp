@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>testAPP1</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css" />
+    <style type="text/css">
+      html,body{
+        height: 100%;
+      }
+      header{
+        margin-top: 15px;
+        height: 50px;
+        background-color: rgb(67,67,67);
+      }
+      header .left{
+        position: absolute;
+        left:10px;
+        top:0;
+        width:80px;
+        height: 50px;
+      }
+      .left .arrow{
+        position: absolute;
+        left:0;
+        top:0;
+        width:26px;
+        height: 100%;
+        background-image: url(./image/arrow_down.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 50% 8px;
+        /*必须加适配*/
+        -webkit-transition:0.5s ease-in;
+        transition:0.5s ease-in;
+      }
+      .left .arrow.active{
+        /*必须加适配*/
+        -webkit-transform:rotate(180deg);
+        transform:rotate(180deg);
+      }
+      .left .city{
+        position: absolute;
+        left:24px;
+        top: 0;
+        /*文字竖直方向居中*/
+        line-height: 50px;
+        /*字体颜色*/
+        color:white;
+        /*字体大小*/
+        font-size: 13px;
+      }
+      header .center{
+        width: 148px;
+        height: 50px;
+        background-image:url(./image/home_title.png);
+        background-size:74px 19px;
+        background-repeat:no-repeat;
+        background-position: center center;
+        position: absolute;
+        left:50%;
+        margin-left:-74px;
+      }
+      header .right{
+        width:50px;
+        height: 50px;
+        /*背景图*/
+        background-image: url(./image/home_membercenter.png);
+        /*默认大小*/
+        background-size:30px 30px;
+        /*背景不重复*/
+        background-repeat: no-repeat;
+        /*设置起始位置*/
+        background-position:center center;
+        /*修改位置*/
+        position: absolute;
+        right:0px;
+      }
+    </style>
+</head>
+<body>
+  <header id="header">
+    <div class="left" tapmode onclick="openCity()">
+      <div class="arrow" id="arrow"></div>
+      <div class="city" id="city">球队</div>
+    </div>
+    <div class="center"></div>
+    <div class="right" tapmode onclick="openPersonal()"></div>
+  </header>
+</body>
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript">
+    /*api加载完毕*/
+    apiready = function(){
+      /*加载滚动的内容*/
+      api.openFrame({
+          name: 'menu',
+          url: './html/menu.html',
+          rect: {
+              x: 0,
+              y: 50,
+              w: 'auto',
+              h: 'auto'
+          }
+      });
+
+      /*接收从city 传过来的消息*/
+      api.addEventListener({
+          name: 'changeCity'
+      }, function(ret, err){
+          if( ret ){
+              //  alert( JSON.stringify( ret ) );
+              /*更新相关新城市名，箭头向下*/
+              removeArrowState();
+              updateCityName(ret.value.cityName);
+          }else{
+               alert( JSON.stringify( err ) );
+          }
+      });
+		};
+    /*更新城市名*/
+    function updateCityName(cn){
+        /*获取元素*/
+        var cnDiv = $api.byId('city');
+        $api.html(cnDiv,cn);
+    }
+    /*箭头状态的改变*/
+    function setArrowState(){
+      /*先获取箭头*/
+      var arrow = $api.byId('arrow');
+      /*没有的话，给添加一个*/
+      $api.addCls(arrow, 'active');
+    }
+    function removeArrowState(){
+      /*先获取箭头*/
+      var arrow = $api.byId('arrow');
+      /*有的话，则移除*/
+      $api.removeCls(arrow, 'active');
+    }
+    /*打开城市列表*/
+    function openCity(){
+      /*箭头向上*/
+      setArrowState();
+      /*获取header*/
+      var header = $api.byId('header');
+      //适配iOS7+，Android4.4+状态栏
+      // $api.fixStatusBar(header);
+      /*动态计算header高度*/
+      var headerH = $api.offset(header).h;
+      /*计算city列表的高度*/
+      var frameH = api.winHeight - headerH;
+      api.openFrame({
+          name: 'city',
+          url: './html/city.html',
+          rect: {
+              x: 0,
+              y: headerH,
+              w: 'auto',
+              h: frameH
+          }
+      });
+    }
+    /*打开个人中心还是登录界面?*/
+    function openPersonal(){
+      /*判断账号是否登录*/
+      if($api.getStorage("userName")){
+        /*进入个人中心*/
+        api.openWin({
+          name:'personal',
+          url:'./html/personal.html'
+        })
+      }else{
+        api.openWin({
+            name: 'login',
+            url: './html/login.html'
+        });
+      }
+    }
+</script>
+</html>

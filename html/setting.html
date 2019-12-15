@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>设置</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+      <style>
+          header{
+            height: 50px;
+            background-color: rgb(67, 67, 67);
+          }
+          header .title{
+            width: 100%;
+            line-height: 50px;
+            text-align: center;
+            color:white;
+            font-size: 15px;
+          }
+          header .left{
+            width: 22px;
+            height: 100%;
+            background-image: url(../image/back.png);
+            background-position:center center;
+            background-size: 11px 20px;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 5px;
+            top:0;
+          }
+          ol li{
+            height: 60px;
+            border-bottom: 1px solid #ddd;
+          }
+          ol li span{
+            line-height: 60px;
+          }
+          ol li .left{
+            padding-left: 15px;
+          }
+          ol li .cl{
+            background-image: url(../image/arrow_right.png);
+            background-size: 20px 28px;
+            background-repeat: no-repeat;
+            background-position: right center;
+            padding-right: 28px;
+            float: right;
+            margin-right: 15px;
+            height: 100%;
+          }
+          .logOut{
+            width: auto;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color:  rgb(67, 67, 67);
+            margin:30px 36px;
+            color: white;
+            border-radius: 12px;
+            font-size: 18px;
+          }
+      </style>
+  </head>
+  <body>
+      <header>
+        <div class="title">设置</div>
+        <div class="left" tapmode onclick="api.closeWin();"></div>
+      </header>
+      <ol>
+        <li>
+          <span class="left">清除缓存</span>
+          <span class="cl" id="cl"></span>
+        </li>
+        <li>
+          <span class="left">关于</span>
+          <span class="cl" id="cl"></span>
+        </li>
+      </ol>
+      <div class="logOut" tapmode onclick="logOut()">退出登录</div>
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+  apiready = function(){
+     api.getCacheSize(function(ret) {
+         /*
+           缓存大小，单位为Byte，
+           1M = 1024kb
+           1kb = 1024b(b等于byte)
+           1byte = 8bit(字节)
+         */
+         var size = ret.size/1024/1024;
+         var str = size.toFixed(2)+"M";
+         $api.html($api.byId("cl"),str);
+     });
+   };
+   /*退出登录*/
+   function logOut(){
+     api.confirm({
+         title: '提示',
+         msg: '是否退出登录',
+         buttons: ['确定', '取消']
+     }, function(ret, err){
+         if( ret ){
+             //  alert( JSON.stringify( ret ) );
+             if(ret.buttonIndex == 1){
+               /*清除登录缓存*/
+               $api.rmStorage('userName');
+               /*退出到主界面*/
+               api.closeToWin({
+                   name: 'root'
+               });
+             }
+         }else{
+              alert( JSON.stringify( err ) );
+         }
+     });
+
+   }
+</script>
+</html>

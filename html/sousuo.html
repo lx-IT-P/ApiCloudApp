@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="tephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+      <!-- <link rel="stylesheet" type="text/css" href="../css/aui.css" /> -->
+    <style type="text/css">
+        html,
+        body {
+
+            height: 100%;
+        }
+
+        #sousuokuang {
+            position: absolute;
+            background-image: url(../image/sousuo.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 30px 24px;
+            width: 50px;
+            height: 50px;
+
+
+        }
+
+        #search {
+            width: 220px;
+            /*height: 50px;*/
+            border: none;
+            /*输入的时候外边轮廓*/
+            outline: none;
+            text-align: left;
+            margin-left: 60px;
+            margin-top: 10px;
+
+        }
+
+        #sousuo {
+
+            margin-top: 15px;
+            margin-left: 30px;
+        }
+        h5{
+          margin-top: 30px;
+          color: red;
+        }
+        #remen{
+  border-bottom:1px solid #ddd;
+          height: 70px;
+        }
+      #kebi{
+        line-height: center;
+
+        }
+        .top {
+            height: 18px;
+            background-color: rgb(67, 67, 67);
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="top"></div>
+
+    <span id="sousuokuang"></span>
+    <span > <input type="text" id="search"  placeholder="这里有你想看的" maxlength="30" ></span>
+    <span id="sousuo" tapmode onclick="openWareFrame();">搜索</span>
+  <br>
+    <h5>热门搜索</h5>
+    <div id="remen">
+    <span id="kebi"><img src="../image/1.png" width="30px" height="25px"></span>
+    <span>科比背身单打集锦</span>
+    </div>
+    <hr color="red">
+    <div id="remen">
+    <span><img src="../image/2.png" width="30px" height="25px"></span>
+    <span>韦德迷踪步</span>
+    </div>
+    <hr/>
+    <div id="remen">
+    <span><img src="../image/3.png" width="30px" height="25px"></span>
+    <span>欧文集锦</span>
+    </div>
+    <hr>
+    <div id="remen">
+    <span><img src="../image/4.png" width="35px" height="30px"></span>
+    <span>过人教学</span>
+    </div>
+    <hr>
+    <div id="remen">
+    <span><img src="../image/5.png" width="40px" height="30px"></span>
+    <span>詹姆斯球鞋</span>
+    </div>
+    <hr>
+    <div id="remen">
+    <span><img src="../image/6.png" width="35px" height="29px"></span>
+    <span>库里中国行活动</span>
+    </div>
+    <hr>
+    <div id="remen">
+    <span><img src="../image/7.png" width="30px" height="25px"></span>
+    <span>乔丹后仰跳投</span>
+    </div>
+    <hr>
+    <div id="remen">
+    <span><img src="../image/8.png" width="30px" height="25px"></span>
+    <span>艾佛森crossover</span>
+    </div>
+    <hr>
+
+</body>
+
+</html>
+<script type="text/javascript">
+    apiready = function() {
+
+    }
+    function openWareFrame() {
+        api.openWin({
+            name: 'shipin',
+            url: './shipin.html',
+
+        });
+
+
+    }
+</script>
+
+
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+      <style>
+      html,
+body {
+    height: 100%;
+    min-height: 100%;
+}
+
+section {
+    height: 100%;
+}
+
+.info-name {
+    box-sizing: border-box;
+    width: 100%;
+    height: 61px;
+    padding-top: 8px;
+    padding-left: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.info-name .name {
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    color: #444;
+    font-size: 18px;
+}
+
+.info-name .description {
+    width: 100% height: 20px;
+    line-height: 20px;
+    color: #888;
+    font-size: 14px;
+}
+
+.info-price {
+    box-sizing: border-box;
+    width: 100%;
+    height: 61px;
+    padding-top: 8px;
+    padding-left: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.info-price .price {
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    color: #e3007f;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.info-price .other {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-flow: row;
+    flex-flow: row;
+    width: 100%;
+    height: 20px;
+}
+
+.info-price .other div {
+    width: 100%;
+    height: 20px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    line-height: 20px;
+    font-size: 14px;
+    color: #888;
+}
+
+.info-price .other .origin-price {
+    box-sizing: border-box;
+    padding-left: 8px;
+    text-align: left;
+}
+
+.info-price .other .unit {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.info-price .other .place {
+    box-sizing: border-box;
+    padding-right: 16px;
+    text-align: right;
+}
+
+.info-discount {
+    box-sizing: border-box;
+    width: 100%;
+    height: 34px;
+    border-bottom: 1px solid #ddd;
+}
+
+.info-discount .name {
+    display: inline-block;
+    width: auto;
+    height: 15px;
+    margin-top: 8px;
+    margin-left: 8px;
+    color: #444;
+}
+
+.info-discount .value {
+    display: inline-block;
+    width: auto;
+    height: 15px;
+    line-height: 15px;
+    margin-top: 3px;
+    padding: 4px;
+    border-radius: 15px;
+    box-shadow: 0 1px 1px 1px #eee;
+    color: #fff;
+    background-color: #e3007f;
+}
+
+.push {
+    position: relative;
+    box-sizing: border-box;
+    padding-top: 8px;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+}
+
+.push .top {
+    height: 24px;
+    line-height: 24px;
+}
+
+.push .bottom {
+    height: 20px;
+    line-height: 20px;
+}
+      </style>
+  </head>
+  <body>
+    <section>
+        <div id="picture" class="picture"></div>
+        <div class="info-name">
+            <div id="wareName" class="name">耐克篮球鞋</div>
+            <div id="description" class="description">Nike Zoom Ascention EP</div>
+        </div>
+        <div class="info-price">
+            <div id="price" class="price">¥289</div>
+            <div class="other">
+                <div class="origin-price">
+                    <del id="originPrice">原价：¥399</del>
+                </div>
+                <div id="unit" class="unit">规格：1双</div>
+                <div id="detail" class="place">产地：中国</div>
+            </div>
+        </div>
+        <div class="info-discount">
+            <div class="name">优惠活动：</div>
+            <div class="value">全店满49元包邮</div>
+        </div>
+
+        <!-- <div class="push">
+            <div class="top">“谢谢您的光临”</div>
+            <div class="bottom">下滑查看商品详情</div>
+        </div> -->
+    </section>
+    <footer class="aui-bar aui-bar-tab">
+        <div class="aui-bar-tab-item" tapmode style="width: 3rem;">
+            <i class="aui-iconfont aui-icon-comment aui-text-info"></i>
+            <div class="aui-bar-tab-label aui-text-info">咨询</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode style="width: 3rem;">
+            <i class="aui-iconfont aui-icon-star aui-text-warning"></i>
+            <div class="aui-bar-tab-label aui-text-warning">收藏</div>
+        </div>
+        <div class="aui-bar-tab-item aui-bg-warning aui-text-white" tapmode style="width: auto;" onclick="shop()">加入购物车</div>
+        <div class="aui-bar-tab-item aui-bg-danger aui-text-white" tapmode style="width: auto;">立即购买</div>
+    </footer>
+
+  </body>
+  <script type="text/javascript" src="../script/api.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+        // 初始化轮播图模块
+            initUIScrollPicture();
+      };
+      var UIScrollPicture;
+
+function initUIScrollPicture() {
+
+    // 获取占位的div元素，并设置元素的宽高
+    var picture = $api.byId('picture');
+    picture.style.width = api.winWidth + 'px';
+    picture.style.height = api.winWidth + 'px';
+    var rect = $api.offset(picture);
+
+    // 引入UIScrollPicture模块，并指定位置和宽高
+    UIScrollPicture = api.require('UIScrollPicture');
+    UIScrollPicture.open({
+        rect: {
+            x: rect.l,
+            y: rect.t,
+            w: rect.w,
+            h: rect.h
+        },
+        data: {
+            paths: [
+              /*固定格式*/
+                'widget://image/qiuxie.png',
+                'widget://image/qiuxie1.png',
+                'widget://image/qiuxie2.png',
+                'widget://image/qiuxie3.png',
+                'widget://image/qiuxie4.png',
+            ]
+        },
+        styles: {
+            caption: {
+                height: 35,
+                color: '#E0FFFF',
+                size: 13,
+                bgColor: '#696969',
+                position: 'bottom'
+            },
+            indicator: {
+                align: 'center',
+                color: '#FFFFFF',
+                activeColor: '#DA70D6'
+            }
+        },
+        placeholderImg: 'widget://image/default_rect.png',
+        contentMode: 'scaleToFill',
+        interval: 2,
+        fixedOn: api.frameName,
+        loop: true,
+        fixed: false
+    }, function(ret, err) {
+        if (ret) {
+            //alert(JSON.stringify(ret));
+        } else {
+            alert(JSON.stringify(err));
+        }
+    });
+}
+function shop() {
+    api.openWin({
+        name: 'shop',
+        url: './shoppingcart.html',
+
+    });
+}
+  </script>
+  </html>

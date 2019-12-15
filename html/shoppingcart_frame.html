@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>购物车Frame</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/reset.css" />
+      <link rel="stylesheet" type="text/css" href="../css/animate.css" />
+        <link rel="stylesheet" type="text/css" href="../css/jd_cart.css" />
+    <style type="text/css">
+    html,
+    body {
+        height: 100%;
+        background-color: #eee;
+    }
+
+    .list {
+        display: block;
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        height: auto;
+    }
+
+    .ware {
+        position: relative;
+        width: 100%;
+        height: 128px;
+        margin-bottom: 8px;
+        background-color: #fff;
+    }
+
+    .ware .content {
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .ware .select {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 56px;
+        left: 8px;
+        background-repeat: no-repeat;
+        background-image: url(../image/select_on.png);
+        background-size: 100% 100%;
+        background-position: center center;
+        z-index: 2;
+    }
+
+    .ware .select-off {
+        background-image: url(../image/select_off.png);
+    }
+
+    .ware .thumbnail {
+        position: absolute;
+        top: 14px;
+        left: 32px;
+        height: 100px;
+        width: 100px;
+    }
+
+    .ware .info {
+        position: relative;
+        box-sizing: border-box;
+        padding-left: 144px;
+        width: 100%;
+        height: 114px;
+        padding-right: 28px;
+    }
+
+    .ware .info .name {
+        width: 100%;
+        height: 15px;
+        color: #555555;
+        margin-top: 14px;
+        font-size: 15px;
+    }
+
+    .ware .info .price-tag {
+        margin-top: 10px;
+        width: 100%;
+        height: 12px;
+        font-size: 12px;
+        vertical-align: top;
+    }
+
+    .ware .info .price-tag .price {
+        color: #e3007f;
+    }
+
+    .ware .info .price-tag .unit {
+        font-size: 8px;
+        color: #cbcbcb;
+    }
+
+    .ware .control {
+        position: absolute;
+        width: 110px;
+        height: 23px;
+        top: 53px;
+        right: 8px;
+    }
+
+    .ware .control .minus {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 23px;
+        height: 23px;
+        z-index: 2;
+    }
+
+    .ware .control .count {
+        position: relative;
+        top: 0;
+        margin-left: 31px;
+        margin-right: 31px;
+        width: auto;
+        height: 23px;
+        text-align: center;
+        line-height: 23px;
+        color: #444;
+        font-size: 12px;
+        background-image: url(../image/count.png);
+        background-repeat: no-repeat;
+        background-size: 48px 23px;
+    }
+
+    .ware .control .add {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 23px;
+        height: 23px;
+        z-index: 2;
+    }
+
+    .empty {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        background-image: url(../image/shoppingcart_empty.png);
+        background-repeat: no-repeat;
+        background-size: 115px 190px;
+        background-position: center 50px;
+    }
+
+    .active {
+        opacity: 0.7;
+    }
+    </style>
+</head>
+
+<body>
+
+
+<!--安全提示-->
+<div class="safety-tip">
+   <p class="fadeInDown animated">您正在安全购物环境中，请放心购物</p>
+</div>
+
+<!--店铺-->
+ <div class="jd_shop">
+     <div class="jd_shop_tit">
+        <div class="check_box">
+            <a href="#" class="jd_check_box"></a>
+        </div>
+        <div class="shop_info">
+            <div class="jd_logo f_left">
+                <img src="images/buy-logo.png" alt="">
+                <span>爱运动自营</span>
+            </div>
+            <div class="f_right tip m_r10">
+                您享受满79元免运费服务
+            </div>
+
+        </div>
+    </div>
+     <div class="jd_shop_con">
+         <div class="product">
+             <div class="check_box">
+                 <a href="#" class="jd_check_box" checked></a>
+             </div>
+             <div class="shop_info clearfix">
+                 <a href="#" class="img_box f_left"><img src="../image/qiuxie.png" alt=""></a>
+                 <div class="info_box">
+                     <a class="p_name" href="#">耐克篮球鞋 </a>
+                     <p class="p_price">&yen;289.00</p>
+                     <div class="p_opition">
+                        <div class="change_num f_left">
+                            <span>-</span>
+                            <input type="tel">
+                            <span>+</span>
+                        </div>
+                        <div class="delete_box f_right">
+                            <span class="delete_up"></span>
+                            <span class="delete_down"></span>
+                        </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="product">
+             <div class="check_box">
+                 <a href="#" class="jd_check_box" checked></a>
+             </div>
+             <div class="shop_info clearfix">
+                 <a href="#" class="img_box f_left"><img src="../image/lanqiu.png" alt=""></a>
+                 <div class="info_box">
+                     <a class="p_name" href="#">李宁篮球真皮 </a>
+                     <p class="p_price">&yen;69.00</p>
+                     <div class="p_opition">
+                        <div class="change_num f_left">
+                            <span>-</span>
+                            <input type="tel">
+                            <span>+</span>
+                        </div>
+                        <div class="delete_box f_right">
+                            <span class="delete_up"></span>
+                            <span class="delete_down"></span>
+                        </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="product">
+             <div class="check_box">
+                 <a href="#" class="jd_check_box" checked></a>
+             </div>
+             <div class="shop_info clearfix">
+                 <a href="#" class="img_box f_left"><img src="../image/zuqiu.png" alt=""></a>
+                 <div class="info_box">
+                     <a class="p_name" href="#">C罗刺客足球鞋 </a>
+                     <p class="p_price">&yen;128.00</p>
+                     <div class="p_opition">
+                        <div class="change_num f_left">
+                            <span>-</span>
+                            <input type="tel">
+                            <span>+</span>
+                        </div>
+                        <div class="delete_box f_right">
+                            <span class="delete_up"></span>
+                            <span class="delete_down"></span>
+                        </div>
+                     </div>
+                 </div>
+             </div>
+             </div>
+         <div class="product">
+                 <div class="check_box">
+                     <a href="#" class="jd_check_box" checked></a>
+                 </div>
+                 <div class="shop_info clearfix">
+                     <a href="#" class="img_box f_left"><img src="../image/qiuyi.png" alt=""></a>
+                     <div class="info_box">
+                         <a class="p_name" href="#">科比球衣套装</a>
+                         <p class="p_price">&yen;88.00</p>
+                         <div class="p_opition">
+                            <div class="change_num f_left">
+                                <span>-</span>
+                                <input type="tel">
+                                <span>+</span>
+                            </div>
+                            <div class="delete_box f_right">
+                                <span class="delete_up"></span>
+                                <span class="delete_down"></span>
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+     </div>
+ </div>
+<div class="jd_win">
+    <div class="jd_win_box">
+        <div class="jd_win_tit">你确定删除该商品吗？</div>
+        <div class="jd_btn clearfix">
+            <a href="#" class="cancle f_left">取消</a>
+            <a href="#" class="submit f_right">确定</a>
+        </div>
+
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery.js"></script>
+<script type="text/javascript" src="../script/cart.js"></script>
+<script type="text/javascript">
+apiready = function() {
+
+}
+
+
+</script>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        body {}
+    </style>
+</head>
+
+<body>
+    <footer class="aui-bar aui-bar-tab">
+        <div class="aui-bar-tab-item " tapmode>
+            <i class="aui-iconfont aui-icon-home" onclick="home()"></i>
+            <div class="aui-bar-tab-label">首页</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+
+            <i class="aui-iconfont aui-icon-note" onclick="chat()"></i>
+            <div class="aui-bar-tab-label">球友</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+
+            <i class="aui-iconfont aui-icon-location" onclick="fujin()"></i>
+            <div class="aui-bar-tab-label">附近</div>
+        </div>
+        <div class="aui-bar-tab-item  aui-active" tapmode>
+
+            <i class="aui-iconfont aui-icon-cart" onclick="buy()"></i>
+            <div class="aui-bar-tab-label">商城</div>
+        </div>
+
+
+        <div class="aui-bar-tab-item" tapmode>
+
+            <i class="aui-iconfont aui-icon-my" onclick="my()"></i>
+            <div class="aui-bar-tab-label">我的</div>
+        </div>
+
+    </footer>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-tab.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        api.parseTapmode();
+    }
+    var tab = new auiTab({
+           element:document.getElementById("footer"),
+           index:1,
+           repeatClick:false
+       },function(ret){
+           console.log(ret);
+       });
+    function buy() {
+        api.openWin({
+            name: 'order',
+            url: 'shangcheng.html',
+            pageParam: {
+                name: 'test'
+            }
+        });
+    }
+    function home() {
+        api.openWin({
+            name: 'order',
+            url: '../index.html',
+            pageParam: {
+                name: 'test'
+            }
+        });
+    }
+    function chat() {
+        api.openWin({
+            name: 'chat',
+            url: 'list.html',
+            pageParam: {
+                name: 'test'
+            }
+        });
+    }
+    function my() {
+      if($api.getStorage("userName")){
+        /*进入个人中心*/
+        api.openWin({
+          name:'personal',
+          url:'personal.html'
+        })
+      }else{
+        api.openWin({
+            name: 'login',
+            url: 'login.html'
+        });
+    }
+}
+    function fujin() {
+        api.openWin({
+            name: 'fujin',
+            url: 'fujin.html',
+            pageParam: {
+                name: 'test3'
+            }
+        });
+    }
+
+    function set() {
+        api.openWin({
+            name: 'set',
+            url: 'list_night_win.html',
+            pageParam: {
+                name: 'test4'
+            }
+        });
+    }
+</script>
+
+</html>
